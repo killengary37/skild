@@ -9,6 +9,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ClerkProvider } from '@clerk/tanstack-react-start';
 
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
+import { PostHogProvider } from "../integrations/posthog/provider";
 
 import appCss from "../styles.css?url";
 
@@ -57,6 +58,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="font-sans antialiased wrap anywhere">
         <ClerkProvider>
+          <PostHogProvider>
           <div id="root-layout">
             <header>
               <div className="frame">
@@ -83,6 +85,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
               TanStackQueryDevtools,
             ]}
           />
+          </PostHogProvider>
         </ClerkProvider>
         <Scripts />
       </body>
