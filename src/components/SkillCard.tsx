@@ -1,18 +1,21 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowBigUp, ArrowUpRight, Bookmark, Check, Copy, MessageSquare } from "lucide-react";
 import { useState } from "react";
+import type { GetSkillsData } from "#/dataconnect-generated";
+
+type SkillRecord = GetSkillsData["skills"][number];
 
 const SkillCard = ({
-    authorEmail,
-    category,
     createdAt,
     description, 
-    id, 
     installCommand,
     tags,
     title,
+    author,
    }: SkillRecord) => {
     const [copied, setCopied] = useState(false);
+
+    const category = tags[0] ?? "General";
 
       const handleCopy = async () => {
         try {
@@ -47,9 +50,13 @@ const SkillCard = ({
        <div className="body">
         <div className="meta">
           <div className="author">
-            <img src="/logo512.png" alt="author avatar" className="avatar"/>
+            <img
+              src={author.imageUrl || '/logo512.png'}
+              alt={`${author.username} avatar`}
+              className="avatar"
+            />
             <div className="author-copy">
-              <p>Gary Marc</p>  
+              <p>{author.username}</p>  
               <p>
                 {createdAt
                   ? new Date(createdAt).
@@ -94,7 +101,7 @@ const SkillCard = ({
 
             <div className="comments">
               <MessageSquare size={14} />
-              <span>{authorEmail ? 1 : 0}</span>
+              <span>{author.email ? 1 : 0}</span>
             </div>
           </div>
 
