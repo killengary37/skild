@@ -1,4 +1,4 @@
-import { SignIn } from '@clerk/react'
+import { SignIn } from '@clerk/tanstack-react-start'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/__auth/sign-in/$')({

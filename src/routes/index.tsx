@@ -1,11 +1,33 @@
 import SkillCard from "#/components/SkillCard";
-import { skills } from "#/lib/skills";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Terminal } from "lucide-react";
+import { createServerFn } from "@tanstack/react-start";
+import { getSkills } from "#/dataconnect-generated";
+import { dataConnect } from "#/lib/firebase"
 
-export const Route = createFileRoute("/")({ component: Home });
+
+const getSkillsFn = createServerFn({ method: "GET"}).handler(async () => {
+  try {
+    const { data } = await getSkills(dataConnect, {
+      searchTerm:"",
+      limit: 10,
+    });
+
+    return data.skills;
+  } catch (error) {
+    console.error(error);
+    return[];
+  }
+});
+
+export const Route = createFileRoute("/")({ 
+  component: Home,
+  loader: () => getSkillsFn(),
+ });
 
 function Home() {
+  const skills = Route.useLoaderData();
+
   return(
     <div id="home">
       <section className="hero">

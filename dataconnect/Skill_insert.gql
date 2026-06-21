@@ -1,0 +1,7 @@
+# This is a file for you to write an un-named mutation. 
+# Only one un-named mutation is allowed per file.
+mutation {
+  skill_insert(
+    data: {id: "11111111222233334444555555555558", authorClerkId: "user_3EWC3dbi3klfskIzhEDv0KzUKm8", createdAt: "2026-06-17T22:50:09.333Z", description: "Generate boilerplate code, refactor existing implementations, and create reusable utilities for common tasks.", installCommand: "npm install @skild/write-code", promptConfig: "you are a professional performance optimization engineer", tags: ["ai-agent", "engineering"], title: "Write Code", usageExample: "review the code and optimize it"}
+  )
+}

@@ -1,4 +1,4 @@
-import { Show, SignInButton, UserButton } from "@clerk/react";
+import { Show, UserButton } from "@clerk/react";
 import { Link } from "@tanstack/react-router";
 import { LogIn } from "lucide-react"
 
@@ -9,7 +9,7 @@ const Navbar = () => (
         <div className="glyph"/>
       </div>
       <Link to="/">
-        <span>Skild</span>S
+        <span>Skild</span>
       </Link>
     </div>
 
