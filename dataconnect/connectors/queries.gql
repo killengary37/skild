@@ -1,4 +1,4 @@
-query GetSkills($searchTerm: String = "", $limit: Int = 10) @auth(level: PUBLIC
+query GetSkills($searchTerm: String = "", $limit: Int = 10, $offset: Int = 0) @auth(level: PUBLIC
 insecureReason: "Skills should be visible to everyone") {
   skills(
     where: {
@@ -10,9 +10,16 @@ insecureReason: "Skills should be visible to everyone") {
     orderBy: [ {
       createdAt: DESC
     }],
-    limit: $limit
+    limit: $limit,
+    offset: $offset,
   ) {
     id title description tags createdAt installCommand
     author { username imageUrl clerkId email }
   }
 }
+
+
+
+# 1. **Limit** Specifies the page size - how many records to fetch in this request
+# 2. **Offset**: Specifies which "page" of results to return by skipping records
+
